@@ -1,0 +1,17 @@
+### DEFAULT PROFILE ###
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: project-case-pix
+    version: 1.0.0
+  jackson:
+    time-zone: Brazil/East
+    locale: pt_BR
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, heapdump
