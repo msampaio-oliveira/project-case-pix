@@ -51,6 +51,13 @@ dependencies {
 	// Devtools
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
+	// Spring-cloud-aws-context
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-aws-context', version: '2.2.6.RELEASE'
+
+	// Database
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.7.0'
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.29'
+
 }
 
 
