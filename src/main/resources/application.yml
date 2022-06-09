@@ -9,6 +9,16 @@ spring:
   jackson:
     time-zone: Brazil/East
     locale: pt_BR
+  datasource:
+    url: jdbc:mysql://db-project-case-pix.cnpgy7mya55o.us-east-1.rds.amazonaws.com:3306/projectcasepix
+    username: projectpix
+    password: projectpix
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
 management:
   endpoints:
