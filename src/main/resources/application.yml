@@ -10,9 +10,9 @@ spring:
     time-zone: Brazil/East
     locale: pt_BR
   datasource:
-    url: jdbc:mysql://db-project-case-pix.cnpgy7mya55o.us-east-1.rds.amazonaws.com:3306/projectcasepix
-    username: projectpix
-    password: projectpix
+    url:
+    username:
+    password:
   jpa:
     hibernate:
       ddl-auto: update
@@ -25,3 +25,17 @@ management:
     web:
       exposure:
         include: health, heapdump
+
+limit:
+  max:
+    key:
+      value:
+        legal-person: 20
+        natural-person: 5
+
+account:
+  key:
+    accepted:
+      current: corrente
+      savings: poupança
+
