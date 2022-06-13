@@ -2,10 +2,14 @@ package br.com.project.pix.exception;
 
 import br.com.project.pix.exception.validations.AccountCannotContainCharacterException;
 import br.com.project.pix.exception.validations.AccountExceedValueNumberException;
+import br.com.project.pix.exception.validations.AccountHolderLastNameException;
+import br.com.project.pix.exception.validations.AccountHolderNameException;
 import br.com.project.pix.exception.validations.AccountTypeException;
 import br.com.project.pix.exception.validations.AgencyCannotContainCharacterException;
 import br.com.project.pix.exception.validations.AgencyExceedValueNumberException;
 import br.com.project.pix.exception.validations.DataNotFoundException;
+import br.com.project.pix.exception.validations.FilterDateException;
+import br.com.project.pix.exception.validations.FilterOnlyIdException;
 import br.com.project.pix.exception.validations.InvalidCNPJException;
 import br.com.project.pix.exception.validations.InvalidCPFException;
 import br.com.project.pix.exception.validations.InvalidEmailException;
@@ -31,10 +35,14 @@ import java.util.Locale;
 
 import static br.com.project.pix.exception.ErrorCodes.ACCOUNT_CANNOT_CONTAIN_CHARACTER_EXCEPTION;
 import static br.com.project.pix.exception.ErrorCodes.ACCOUNT_EXCEED_VALUE_NUMBER_EXCEPTION;
+import static br.com.project.pix.exception.ErrorCodes.ACCOUNT_HOLDER_LAST_NAME_EXCEPTION;
+import static br.com.project.pix.exception.ErrorCodes.ACCOUNT_HOLDER_NAME_EXCEPTION;
 import static br.com.project.pix.exception.ErrorCodes.ACCOUNT_TYPE_EXCEPTION;
 import static br.com.project.pix.exception.ErrorCodes.AGENCY_CANNOT_CONTAIN_CHARACTER_EXCEPTION;
 import static br.com.project.pix.exception.ErrorCodes.AGENCY_EXCEED_VALUE_NUMBER_EXCEPTION;
 import static br.com.project.pix.exception.ErrorCodes.DATA_NOT_FOUND_EXCEPTION;
+import static br.com.project.pix.exception.ErrorCodes.FILTER_DATE_EXCEPTION;
+import static br.com.project.pix.exception.ErrorCodes.FILTER_ONLY_ID_EXCEPTION;
 import static br.com.project.pix.exception.ErrorCodes.INVALID_CPF_EXCEPTION;
 import static br.com.project.pix.exception.ErrorCodes.INVALID_EMAIL_EXCEPTION;
 import static br.com.project.pix.exception.ErrorCodes.INVALID_KEY_ALEATORY_EXCEPTION;
@@ -147,7 +155,7 @@ public class ResourceExceptionHandlerConfig extends ResponseEntityExceptionHandl
     }
 
     @ExceptionHandler(value = {DataNotFoundException.class})
-    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorListDTO unProcessableEntityDataNotFoundException(final DataNotFoundException ex) {
         return getResponseErrorWithMessage(DATA_NOT_FOUND_EXCEPTION);
     }
@@ -156,6 +164,30 @@ public class ResourceExceptionHandlerConfig extends ResponseEntityExceptionHandl
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     public ErrorListDTO unProcessableEntityDataNotFoundException(final KeyInactiveException ex) {
         return getResponseErrorWithMessage(KEY_INACTIVE_EXCEPTION);
+    }
+
+    @ExceptionHandler(value = {AccountHolderNameException.class})
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorListDTO unProcessableEntityAccountHolderNameException(final AccountHolderNameException ex) {
+        return getResponseErrorWithMessage(ACCOUNT_HOLDER_NAME_EXCEPTION);
+    }
+
+    @ExceptionHandler(value = {AccountHolderLastNameException.class})
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorListDTO unProcessableEntityAccountHolderLastNameException(final AccountHolderLastNameException ex) {
+        return getResponseErrorWithMessage(ACCOUNT_HOLDER_LAST_NAME_EXCEPTION);
+    }
+
+    @ExceptionHandler(value = {FilterOnlyIdException.class})
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorListDTO unProcessableEntityFilterOnlyIdException(final FilterOnlyIdException ex) {
+        return getResponseErrorWithMessage(FILTER_ONLY_ID_EXCEPTION);
+    }
+
+    @ExceptionHandler(value = {FilterDateException.class})
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorListDTO unProcessableEntityFilterDateException(final FilterDateException ex) {
+        return getResponseErrorWithMessage(FILTER_DATE_EXCEPTION);
     }
 
     private ErrorListDTO getResponseErrorWithMessage(String errorCode) {
