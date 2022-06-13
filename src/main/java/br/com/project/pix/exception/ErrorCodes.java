@@ -35,4 +35,13 @@ public class ErrorCodes {
     public static final String DATA_NOT_FOUND_EXCEPTION = "10056";
 
     public static final String KEY_INACTIVE_EXCEPTION = "10057";
+
+    public static final String ACCOUNT_HOLDER_NAME_EXCEPTION = "10058";
+
+    public static final String ACCOUNT_HOLDER_LAST_NAME_EXCEPTION = "10059";
+
+    public static final String FILTER_ONLY_ID_EXCEPTION = "10060";
+
+    public static final String FILTER_DATE_EXCEPTION = "10061";
+
 }

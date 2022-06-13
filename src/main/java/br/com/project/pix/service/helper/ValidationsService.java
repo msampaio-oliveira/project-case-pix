@@ -2,6 +2,8 @@ package br.com.project.pix.service.helper;
 
 import br.com.project.pix.dto.PixLimitMaxKeyValueDTO;
 import br.com.project.pix.exception.validations.AccountExceedValueNumberException;
+import br.com.project.pix.exception.validations.AccountHolderLastNameException;
+import br.com.project.pix.exception.validations.AccountHolderNameException;
 import br.com.project.pix.exception.validations.AccountTypeException;
 import br.com.project.pix.exception.validations.AgencyCannotContainCharacterException;
 import br.com.project.pix.exception.validations.AgencyExceedValueNumberException;
@@ -45,7 +47,12 @@ public class ValidationsService {
     private static final String KEY_TYPE_PHONE_REGEX = "([+][0-9])([0-9]{2,3})?([0-9]{2})([0-9]{4,5})([0-9]{4})$";
 
     private static final String LEGAL_PERSON = "J";
+
     private static final String NATURAL_PERSON = "F";
+
+    private static final Integer MAX_CHARACTER_ACCOUNT_HOLDER_NAME = 30;
+
+    private static final Integer MAX_CHARACTER_ACCOUNT_HOLDER_LAST_NAME = 45;
 
     @Value("${limit.max.key.value.legal-person}")
     private Integer limitMaxKeyValueLegalPerson;
@@ -64,17 +71,29 @@ public class ValidationsService {
 
     private PixAccountUserDetailsRepository pixAccountUserDetailsRepository;
 
-    public void validatePixAccountUserDetails(PixAccountUserDetails pixAccountUserDetails, PixAccountUserDetailsRepository pixAccountUserDetailsRepository) {
+    public void validateCreatePixAccountUserDetails(PixAccountUserDetails pixAccountUserDetails, PixAccountUserDetailsRepository pixAccountUserDetailsRepository) {
         this.pixAccountUserDetails = pixAccountUserDetails;
         this.pixAccountUserDetailsRepository = pixAccountUserDetailsRepository;
 
         validateKeyPix();
+        validateKeyValue();
         validateAgencyNumber();
         validateAccountNumber();
-        validateKeyValue();
         validatePersonType();
         validateMaxKeyValue();
         validateAccountType();
+        validateAccountHolderNameAndAccountHolderLastLame();
+    }
+
+    public void validateUpdatePixAccountUserDetails(PixAccountUserDetails pixAccountUserDetails, PixAccountUserDetailsRepository pixAccountUserDetailsRepository) {
+        this.pixAccountUserDetails = pixAccountUserDetails;
+        this.pixAccountUserDetailsRepository = pixAccountUserDetailsRepository;
+
+        validateAgencyNumber();
+        validateAccountNumber();
+        validatePersonType();
+        validateAccountType();
+        validateAccountHolderNameAndAccountHolderLastLame();
     }
 
     private void validateKeyPix() {
@@ -160,6 +179,16 @@ public class ValidationsService {
         if (!pixAccountUserDetails.getAccountType().equals(accountKeyAcceptedCurrent) && !pixAccountUserDetails.getAccountType().equals(accountKeyAcceptedSavings)) {
             log.error("Account type informed [{}] is invalid", pixAccountUserDetails.getAccountType());
             throw new AccountTypeException();
+        }
+    }
+
+    private void validateAccountHolderNameAndAccountHolderLastLame() {
+        if (pixAccountUserDetails.getAccountHolderName().length() > MAX_CHARACTER_ACCOUNT_HOLDER_NAME) {
+            throw new AccountHolderNameException();
+        }
+
+        if (pixAccountUserDetails.getAccountHolderLastLame().length() > MAX_CHARACTER_ACCOUNT_HOLDER_LAST_NAME) {
+            throw new AccountHolderLastNameException();
         }
     }
 
