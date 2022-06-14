@@ -1,6 +1,6 @@
 package br.com.project.pix.service.helper;
 
-import br.com.project.pix.dto.PixLimitMaxKeyValueDTO;
+import br.com.project.pix.dto.projection.PixLimitMaxKeyValueProjection;
 import br.com.project.pix.exception.validations.AccountExceedValueNumberException;
 import br.com.project.pix.exception.validations.AccountHolderLastNameException;
 import br.com.project.pix.exception.validations.AccountHolderNameException;
@@ -135,7 +135,7 @@ public class ValidationsService {
     private void validateMaxKeyValue() {
         var agencyNumber = Integer.parseInt(pixAccountUserDetails.getAgencyNumber());
         var accountNumber = Integer.parseInt(pixAccountUserDetails.getAccountNumber());
-        Optional<PixLimitMaxKeyValueDTO> pixLimitMaxKeyValueResponseDto = pixAccountUserDetailsRepository.findByNumberKeyPix(agencyNumber, accountNumber);
+        Optional<PixLimitMaxKeyValueProjection> pixLimitMaxKeyValueResponseDto = pixAccountUserDetailsRepository.findByNumberKeyPix(agencyNumber, accountNumber);
 
         pixLimitMaxKeyValueResponseDto.ifPresent(pixLimitMaxKeyValueResponse -> {
             if (Objects.equals(pixLimitMaxKeyValueResponse.getPersonType(), NATURAL_PERSON) && pixLimitMaxKeyValueResponse.getCountKeyValue() > limitMaxKeyValueNaturalPerson) {
@@ -176,7 +176,7 @@ public class ValidationsService {
     }
 
     private void validateAccountType() {
-        if (!pixAccountUserDetails.getAccountType().equals(accountKeyAcceptedCurrent) && !pixAccountUserDetails.getAccountType().equals(accountKeyAcceptedSavings)) {
+        if (!pixAccountUserDetails.getAccountType().equalsIgnoreCase(accountKeyAcceptedCurrent.toUpperCase()) && !pixAccountUserDetails.getAccountType().equalsIgnoreCase(accountKeyAcceptedSavings.toUpperCase())) {
             log.error("Account type informed [{}] is invalid", pixAccountUserDetails.getAccountType());
             throw new AccountTypeException();
         }
@@ -187,7 +187,7 @@ public class ValidationsService {
             throw new AccountHolderNameException();
         }
 
-        if (pixAccountUserDetails.getAccountHolderLastLame().length() > MAX_CHARACTER_ACCOUNT_HOLDER_LAST_NAME) {
+        if (pixAccountUserDetails.getAccountHolderLastLame() != null && pixAccountUserDetails.getAccountHolderLastLame().length() > MAX_CHARACTER_ACCOUNT_HOLDER_LAST_NAME) {
             throw new AccountHolderLastNameException();
         }
     }

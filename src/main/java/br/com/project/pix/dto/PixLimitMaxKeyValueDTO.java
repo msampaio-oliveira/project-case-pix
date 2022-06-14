@@ -1,8 +1,18 @@
 package br.com.project.pix.dto;
 
-public interface PixLimitMaxKeyValueDTO {
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-    Integer getCountKeyValue();
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+public class PixLimitMaxKeyValueDTO {
 
-    String getPersonType();
+    private Integer countKeyValue;
+
+    private String personType;
+
 }

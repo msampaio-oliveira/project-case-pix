@@ -36,6 +36,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
 	implementation 'io.github.openfeign:feign-okhttp'
+	implementation 'junit:junit:4.13.1'
 
 	// Lombok
 	compileOnly(group: 'org.projectlombok', name:  'lombok')
@@ -73,7 +74,7 @@ compileTestJava {
 
 test {
 	systemProperty 'spring.profiles.active', "test"
-	useJUnitPlatform()
+	useJUnit()
 	finalizedBy jacocoTestReport
 }
 
