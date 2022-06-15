@@ -1,7 +1,7 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.0'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.7.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
 }
 
 apply plugin: 'java'
@@ -17,81 +17,90 @@ sourceCompatibility = '11'
 targetCompatibility = '11'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
 
-	// Swagger
-	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.6'
+    // Swagger
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.6'
 
-	// Spring
-	implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web')
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
-	implementation 'io.github.openfeign:feign-okhttp'
-	implementation 'junit:junit:4.13.1'
+    // Spring
+    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web')
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    implementation 'io.github.openfeign:feign-okhttp'
+    implementation 'junit:junit:4.13.1'
 
-	// Lombok
-	compileOnly(group: 'org.projectlombok', name:  'lombok')
-	annotationProcessor(group: 'org.projectlombok', name: 'lombok')
+    // Lombok
+    compileOnly(group: 'org.projectlombok', name: 'lombok')
+    annotationProcessor(group: 'org.projectlombok', name: 'lombok')
 
-	//Validation
-	implementation 'javax.validation:validation-api:2.0.1.Final'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
+    //Validation
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-	// Tests
-	testImplementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test')
+    // Tests
+    testImplementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test')
 
-	// Devtools
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    // Devtools
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-	// Spring-cloud-aws-context
-	implementation group: 'org.springframework.cloud', name: 'spring-cloud-aws-context', version: '2.2.6.RELEASE'
+    // Spring-cloud-aws-context
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-aws-context', version: '2.2.6.RELEASE'
 
-	// Database
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.7.0'
-	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.29'
+    // Database
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.7.0'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.29'
 
-	// Apache Commons BeanUtils
-	implementation("commons-beanutils:commons-beanutils:1.9.3")
+    // Apache Commons BeanUtils
+    implementation("commons-beanutils:commons-beanutils:1.9.3")
 }
 
 
 compileJava {
-	options.encoding = 'UTF-8'
+    options.encoding = 'UTF-8'
 }
 
 compileTestJava {
-	options.encoding = 'UTF-8'
+    options.encoding = 'UTF-8'
 }
 
 test {
-	systemProperty 'spring.profiles.active', "test"
-	useJUnit()
-	finalizedBy jacocoTestReport
+    systemProperty 'spring.profiles.active', "test"
+    useJUnit()
+    finalizedBy jacocoTestReport
 }
 
 jacoco {
-	reportsDir = file("$buildDir/jacoco")
+    reportsDir = file("$buildDir/jacoco")
 }
 
 jacocoTestReport {
-	dependsOn test
-	reports {
-		xml.enabled true
-		html.destination file("${buildDir}/jacocoHtml")
-	}
+    dependsOn test
+    reports {
+        xml.enabled true
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+
+    afterEvaluate {
+        classDirectories.from = files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: ['**/config/*', '**/model/*', '**/dto/*',
+                              "**/exception/ErrorCodes.class", "**/exception/ErrorDTO.class", "**/exception/ErrorListDTO.class", "**/exception/ResourceExceptionHandlerConfig.class",
+                              "**/ProjectCasePixApplication.class"])
+        })
+    }
 }
 
 dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:2021.0.1"
-	}
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2021.0.1"
+    }
 }

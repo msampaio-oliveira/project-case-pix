@@ -1,7 +1,7 @@
 package br.com.project.pix.repository;
 
-import br.com.project.pix.dto.projection.PixLimitMaxKeyValueProjection;
 import br.com.project.pix.dto.projection.PixAccountUserDetailsProjection;
+import br.com.project.pix.dto.projection.PixLimitMaxKeyValueProjection;
 import br.com.project.pix.model.PixAccountUserDetails;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;

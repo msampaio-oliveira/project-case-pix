@@ -19,13 +19,16 @@ import org.springframework.data.projection.ProjectionFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import static br.com.project.pix.helper.Helper.ACCOUNT_HOLDER_NAME;
+import static br.com.project.pix.helper.Helper.ACCOUNT_NUMBER;
 import static br.com.project.pix.helper.Helper.ACCOUNT_TYPE_CURRENT;
 import static br.com.project.pix.helper.Helper.ACCOUNT_TYPE_SAVINGS;
+import static br.com.project.pix.helper.Helper.AGENCY_ACCOUNT;
 import static br.com.project.pix.helper.Helper.ID;
 import static br.com.project.pix.helper.Helper.KEY_TYPE_EMAIL;
 import static br.com.project.pix.helper.Helper.KEY_VALUE_CELULAR;
@@ -176,6 +179,20 @@ public class PixAccountUserDetailsServiceTest {
     }
 
     @Test
+    @DisplayName("Deve buscar os objetos do tipo PixAccountUserDetails usando todos os parametros")
+    public void shouldFindAllWithParametersPixAccountUserDetails() {
+
+        //when
+        when(pixAccountUserDetailsRepositoryMock.findAllWithParameters(any(), any(), any(), any(), any(), any(), any())).thenReturn(Collections.singletonList(createPixAccountUserDetailsProjection(projectionFactory)));
+
+        List<PixAccountUserDetailsProjection> listPixAccountUserDetails = pixAccountUserDetailsServiceMock.findAllWithParameters(KEY_TYPE_EMAIL, AGENCY_ACCOUNT, ACCOUNT_NUMBER, ACCOUNT_HOLDER_NAME, null, "12-06-2022", null);
+
+        assertNotNull(listPixAccountUserDetails);
+        assertEquals(1, listPixAccountUserDetails.size());
+        verify(pixAccountUserDetailsRepositoryMock, times(1)).findAllWithParameters(eq(KEY_TYPE_EMAIL), eq(AGENCY_ACCOUNT), eq(ACCOUNT_NUMBER), eq(ACCOUNT_HOLDER_NAME), eq(null), eq("12-06-2022%"), eq(null));
+    }
+
+    @Test
     @DisplayName("Deve retornar FilterOnlyIdException ao buscar um objeto do tipo PixAccountUserDetails usando os parametros, por ter informado o id e outro filtro")
     public void shouldFilterOnlyIdException() {
 
@@ -238,5 +255,7 @@ public class PixAccountUserDetailsServiceTest {
 
         assertThrows(FilterDateException.class, () -> pixAccountUserDetailsServiceMock.findAllWithParameters(null, null, null, null, null, "12-06-2022", "14-06-2022"));
     }
+
+
 
 }

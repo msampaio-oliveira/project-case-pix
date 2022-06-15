@@ -1,6 +1,7 @@
 package br.com.project.pix.service.helper;
 
 import br.com.project.pix.dto.projection.PixLimitMaxKeyValueProjection;
+import br.com.project.pix.exception.validations.AccountCannotContainCharacterException;
 import br.com.project.pix.exception.validations.AccountExceedValueNumberException;
 import br.com.project.pix.exception.validations.AccountHolderLastNameException;
 import br.com.project.pix.exception.validations.AccountHolderNameException;
@@ -172,6 +173,7 @@ public class ValidationsService {
             Integer.parseInt(pixAccountUserDetails.getAccountNumber());
         } catch (Exception ex) {
             log.error("Account number [{}] must allow numeric values", pixAccountUserDetails.getAccountNumber());
+            throw new AccountCannotContainCharacterException();
         }
     }
 
