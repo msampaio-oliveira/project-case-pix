@@ -1,7 +1,7 @@
 package br.com.project.pix.repository;
 
-import br.com.project.pix.dto.PixLimitMaxKeyValueDTO;
 import br.com.project.pix.dto.projection.PixAccountUserDetailsProjection;
+import br.com.project.pix.dto.projection.PixLimitMaxKeyValueProjection;
 import br.com.project.pix.model.PixAccountUserDetails;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,7 +24,7 @@ public interface PixAccountUserDetailsRepository extends JpaRepository<PixAccoun
             " WHERE P.numero_agencia = :agencyNumber " + //
             " AND P.numero_conta = :accountNumber " + //
             " AND P.data_hora_inativação_da_chave IS NULL", nativeQuery = true)
-    Optional<PixLimitMaxKeyValueDTO> findByNumberKeyPix(Integer agencyNumber, Integer accountNumber);
+    Optional<PixLimitMaxKeyValueProjection> findByNumberKeyPix(Integer agencyNumber, Integer accountNumber);
 
     @NotNull
     @Override

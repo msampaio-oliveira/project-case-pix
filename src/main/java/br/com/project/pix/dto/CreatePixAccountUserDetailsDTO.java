@@ -30,7 +30,7 @@ public class CreatePixAccountUserDetailsDTO {
     private String accountHolderName;
 
     @Size(max = 45, message = "size should not exceed 45")
-    private String accountHolderLastLame;
+    private String accountHolderLastName;
 
     @NotNull(message = "personType cannot be null")
     private Character personType;

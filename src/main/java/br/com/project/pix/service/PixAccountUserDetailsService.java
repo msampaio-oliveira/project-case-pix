@@ -76,12 +76,12 @@ public class PixAccountUserDetailsService {
     }
 
     @Transactional
-    public void delete(PixAccountUserDetails pixAccountUserDetails) {
+    public PixAccountUserDetails delete(PixAccountUserDetails pixAccountUserDetails) {
         if (pixAccountUserDetails.getInactiveKeyDateTime() != null) {
             throw new KeyInactiveException();
         }
         pixAccountUserDetails.setInactiveKeyDateTime(LocalDateTime.now());
-        save(pixAccountUserDetails);
+       return save(pixAccountUserDetails);
     }
 
     private PixAccountUserDetails save(PixAccountUserDetails pixAccountUserDetails) {
