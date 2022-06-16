@@ -1,11 +1,9 @@
 package br.com.project.pix.dto;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotNull;
 
-@EqualsAndHashCode
 @Data
 public class UpdatePixAccountUserDetailsDTO {
 
