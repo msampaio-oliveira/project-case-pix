@@ -161,7 +161,7 @@ public class Helper {
         pixAccountUserDetails.setAgencyNumber(agencyAccount);
         pixAccountUserDetails.setAccountNumber(accountNumber);
         pixAccountUserDetails.setAccountHolderName(holderName);
-        pixAccountUserDetails.setAccountHolderLastLame(holderLastLame);
+        pixAccountUserDetails.setAccountHolderLastName(holderLastLame);
         pixAccountUserDetails.setPersonType(personType);
         if (setInactiveKey) {
             pixAccountUserDetails.setInactiveKeyDateTime(LocalDateTime.now());

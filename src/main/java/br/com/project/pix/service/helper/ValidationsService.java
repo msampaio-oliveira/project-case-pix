@@ -139,10 +139,10 @@ public class ValidationsService {
         Optional<PixLimitMaxKeyValueProjection> pixLimitMaxKeyValueResponseDto = pixAccountUserDetailsRepository.findByNumberKeyPix(agencyNumber, accountNumber);
 
         pixLimitMaxKeyValueResponseDto.ifPresent(pixLimitMaxKeyValueResponse -> {
-            if (Objects.equals(pixLimitMaxKeyValueResponse.getPersonType(), NATURAL_PERSON) && pixLimitMaxKeyValueResponse.getCountKeyValue() > limitMaxKeyValueNaturalPerson) {
+            if (Objects.equals(pixLimitMaxKeyValueResponse.getPersonType(), NATURAL_PERSON) && pixLimitMaxKeyValueResponse.getCountKeyValue() >= limitMaxKeyValueNaturalPerson) {
                 log.error("Person Type [{}] reached the limit [{}] of registered pix key", pixLimitMaxKeyValueResponse.getPersonType(), pixLimitMaxKeyValueResponse.getCountKeyValue());
                 throw new LimitMaxKeyValueNaturalPersonException();
-            } else if (Objects.equals(pixLimitMaxKeyValueResponse.getPersonType(), LEGAL_PERSON) && pixLimitMaxKeyValueResponse.getCountKeyValue() > limitMaxKeyValueLegalPerson) {
+            } else if (Objects.equals(pixLimitMaxKeyValueResponse.getPersonType(), LEGAL_PERSON) && pixLimitMaxKeyValueResponse.getCountKeyValue() >= limitMaxKeyValueLegalPerson) {
                 log.error("Person Type [{}] reached the limit [{}] of registered pix key", pixLimitMaxKeyValueResponse.getPersonType(), pixLimitMaxKeyValueResponse.getCountKeyValue());
                 throw new LimitMaxKeyValueLegalPersonException();
             }
@@ -189,7 +189,7 @@ public class ValidationsService {
             throw new AccountHolderNameException();
         }
 
-        if (pixAccountUserDetails.getAccountHolderLastLame() != null && pixAccountUserDetails.getAccountHolderLastLame().length() > MAX_CHARACTER_ACCOUNT_HOLDER_LAST_NAME) {
+        if (pixAccountUserDetails.getAccountHolderLastName() != null && pixAccountUserDetails.getAccountHolderLastName().length() > MAX_CHARACTER_ACCOUNT_HOLDER_LAST_NAME) {
             throw new AccountHolderLastNameException();
         }
     }

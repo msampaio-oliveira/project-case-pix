@@ -12,7 +12,6 @@ apply plugin: 'jacoco'
 
 mainClassName = 'br.com.project.pix.ProjectCasePixApplication'
 
-group = 'br.com.project.case.pix'
 sourceCompatibility = '11'
 targetCompatibility = '11'
 

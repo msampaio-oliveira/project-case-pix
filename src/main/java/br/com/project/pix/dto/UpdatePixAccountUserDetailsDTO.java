@@ -21,7 +21,7 @@ public class UpdatePixAccountUserDetailsDTO {
     @NotNull(message = "accountHolderName cannot be null")
     private String accountHolderName;
 
-    private String accountHolderLastLame;
+    private String accountHolderLastName;
 
     @NotNull(message = "personType cannot be null")
     private Character personType;
