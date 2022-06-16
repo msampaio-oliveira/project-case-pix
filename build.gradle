@@ -35,7 +35,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
     implementation 'io.github.openfeign:feign-okhttp'
-    implementation 'junit:junit:4.13.1'
 
     // Lombok
     compileOnly(group: 'org.projectlombok', name: 'lombok')
@@ -47,9 +46,7 @@ dependencies {
 
     // Tests
     testImplementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test')
-
-    // Devtools
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'junit:junit:4.13.1'
 
     // Spring-cloud-aws-context
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-aws-context', version: '2.2.6.RELEASE'

@@ -19,7 +19,6 @@ import org.springframework.data.projection.ProjectionFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -142,6 +141,15 @@ public class PixAccountUserDetailsServiceTest {
     }
 
     @Test
+    @DisplayName("Deve retornar uma exception DataNotFoundException ao procurar um id no banco de dados para inativação inexistente")
+    public void shouldDataNotFoundExceptionInFindByIdForDeletePixAccountUserDetails() {
+
+        when(pixAccountUserDetailsRepositoryMock.findByIdForDelete(any())).thenReturn(Optional.empty());
+
+        assertThrows(DataNotFoundException.class, () -> pixAccountUserDetailsServiceMock.findByIdForDelete(ID));
+    }
+
+    @Test
     @DisplayName("Deve buscar um objeto por id do tipo PixAccountUserDetails")
     public void shouldFindByIdPixAccountUserDetails() {
 
@@ -152,6 +160,19 @@ public class PixAccountUserDetailsServiceTest {
 
         assertNotNull(pixAccountUserDetails);
         verify(pixAccountUserDetailsRepositoryMock, times(1)).findById(ID);
+    }
+
+    @Test
+    @DisplayName("Deve buscar um objeto por id do tipo PixAccountUserDetails para ser feito a inativação")
+    public void shouldFindByIdForDeletePixAccountUserDetails() {
+
+        //when
+        when(pixAccountUserDetailsRepositoryMock.findByIdForDelete(any())).thenReturn(Optional.of(createPixCelularAccountUserDetails()));
+
+        PixAccountUserDetails pixAccountUserDetails = pixAccountUserDetailsServiceMock.findByIdForDelete(ID);
+
+        assertNotNull(pixAccountUserDetails);
+        verify(pixAccountUserDetailsRepositoryMock, times(1)).findByIdForDelete(ID);
     }
 
     @Test
@@ -255,7 +276,4 @@ public class PixAccountUserDetailsServiceTest {
 
         assertThrows(FilterDateException.class, () -> pixAccountUserDetailsServiceMock.findAllWithParameters(null, null, null, null, null, "12-06-2022", "14-06-2022"));
     }
-
-
-
 }
