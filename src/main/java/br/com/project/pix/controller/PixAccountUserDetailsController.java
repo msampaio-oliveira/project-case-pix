@@ -44,7 +44,7 @@ public class PixAccountUserDetailsController extends AbstractRestController<Long
 
     private final PixAccountUserDetailsService pixAccountUserDetailsService;
 
-    private NonNullBeanUtilsBean utilsBean = new NonNullBeanUtilsBean();
+    private final NonNullBeanUtilsBean utilsBean = new NonNullBeanUtilsBean();
 
     @ResponseStatus(CREATED)
     @PostMapping(produces = APPLICATION_JSON_VALUE)
@@ -80,13 +80,13 @@ public class PixAccountUserDetailsController extends AbstractRestController<Long
 
     @ResponseStatus(OK)
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deletePixAccountUserDetails(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<PixAccountUserDetails> deletePixAccountUserDetails(@PathVariable(value = "id") Long id) {
 
         log.info("Deleting Pix Account User Detail with id [{}]", id);
-        PixAccountUserDetails pixAccountUserDetails = pixAccountUserDetailsService.findById(id);
-        pixAccountUserDetailsService.delete(pixAccountUserDetails);
+        PixAccountUserDetails pixAccountUserDetails = pixAccountUserDetailsService.findByIdForDelete(id);
+        PixAccountUserDetails accountUserDetailsDeleted = pixAccountUserDetailsService.delete(pixAccountUserDetails);
 
-        return ok().build();
+        return ok(accountUserDetailsDeleted);
     }
 
     @GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)

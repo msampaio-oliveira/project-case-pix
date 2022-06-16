@@ -44,7 +44,7 @@ public class PixAccountUserDetails {
     private String accountHolderName;
 
     @Column(name = "SOBRENOME_CORRENTISTA", length = 45)
-    private String accountHolderLastLame;
+    private String accountHolderLastName;
 
     @Column(name = "TIPO_PESSOA", nullable = false, length = 1)
     private Character personType;

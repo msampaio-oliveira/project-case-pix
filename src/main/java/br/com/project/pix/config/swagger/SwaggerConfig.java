@@ -17,6 +17,6 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .addServersItem(new Server().url("/"))
                 .info(new Info().title("Project Case Pix API")
-                        .description("*Solução para manutenção de chaves pix para bancos*"));
+                        .description("Solução para manutenção de chaves pix para bancos"));
     }
 }

@@ -20,7 +20,6 @@ public class CreatePixAccountUserDetailsDTO {
     private String accountType;
 
     @NotNull(message = "agencyNumber cannot be null")
-    @Size(max = 4, message = "size should not exceed 4")
     private String agencyNumber;
 
     @NotNull(message = "accountNumber cannot be null")
@@ -29,7 +28,6 @@ public class CreatePixAccountUserDetailsDTO {
     @NotNull(message = "accountHolderName cannot be null")
     private String accountHolderName;
 
-    @Size(max = 45, message = "size should not exceed 45")
     private String accountHolderLastName;
 
     @NotNull(message = "personType cannot be null")

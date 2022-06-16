@@ -34,13 +34,17 @@ public interface PixAccountUserDetailsRepository extends JpaRepository<PixAccoun
     Optional<PixAccountUserDetails> findById(@NotNull Long id);
 
     @Query(value = "SELECT * " + //
+            " FROM tpix_account_user_details P WHERE P.id = :id", nativeQuery = true)
+    Optional<PixAccountUserDetails> findByIdForDelete (Long id);
+
+    @Query(value = "SELECT * " + //
             " FROM tpix_account_user_details P WHERE P.id = :id " + //
             " AND P.data_hora_inativação_da_chave IS NULL", nativeQuery = true)
     Optional<PixAccountUserDetailsProjection> findProjectionById(Long id);
 
     @Query(value = "SELECT P.id AS id, P.tipo_chave AS keyType, P.valor_chave AS keyValue, P.tipo_conta AS accountType," + //
             "P.numero_agencia AS agencyNumber, P.numero_conta AS accountNumber, P.nome_correntista AS accountHolderName," + //
-            "P.sobrenome_correntista AS accountHolderLastLame, P.tipo_pessoa AS personType, P.data_hora_inclusao_da_chave AS inclusionKeyDateTime," + //
+            "P.sobrenome_correntista AS accountHolderLastName, P.tipo_pessoa AS personType, P.data_hora_inclusao_da_chave AS inclusionKeyDateTime," + //
             "P.data_hora_inativação_da_chave AS inactiveKeyDateTime  " + //
             "FROM tpix_account_user_details P " + //
             " WHERE (:keyValue IS NULL OR P.tipo_chave = :keyValue) " + //

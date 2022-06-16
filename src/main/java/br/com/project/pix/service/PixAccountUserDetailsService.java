@@ -33,6 +33,13 @@ public class PixAccountUserDetailsService {
         });
     }
 
+    public PixAccountUserDetails findByIdForDelete(Long id) {
+        return pixAccountUserDetailsRepository.findByIdForDelete(id).orElseThrow(() -> {
+            log.error("Pix account user details with id for delete [{}] not found!", id);
+            throw new DataNotFoundException();
+        });
+    }
+
     public PixAccountUserDetailsProjection findProjectionById(Long id) {
         return pixAccountUserDetailsRepository.findProjectionById(id).orElseThrow(() -> {
             log.error("Pix account user details with id [{}] not found!", id);
@@ -81,10 +88,18 @@ public class PixAccountUserDetailsService {
             throw new KeyInactiveException();
         }
         pixAccountUserDetails.setInactiveKeyDateTime(LocalDateTime.now());
-       return save(pixAccountUserDetails);
+        return save(pixAccountUserDetails);
     }
 
     private PixAccountUserDetails save(PixAccountUserDetails pixAccountUserDetails) {
-        return pixAccountUserDetailsRepository.save(pixAccountUserDetails);
+        return pixAccountUserDetailsRepository.save(validateResponse(pixAccountUserDetails));
+    }
+
+    private PixAccountUserDetails validateResponse(PixAccountUserDetails pixAccountUserDetails) {
+//
+//        if (pixAccountUserDetails.getAccountHolderLastLame() == null) {
+//            pixAccountUserDetails.setAccountHolderLastLame("");
+//        }
+        return pixAccountUserDetails;
     }
 }

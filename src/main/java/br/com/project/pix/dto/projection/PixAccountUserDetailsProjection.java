@@ -1,6 +1,7 @@
 package br.com.project.pix.dto.projection;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDateTime;
 
@@ -20,7 +21,8 @@ public interface PixAccountUserDetailsProjection {
 
     String getAccountHolderName();
 
-    String getAccountHolderLastLame();
+    @Value("#{target.accountHolderLastName != null ? target.accountHolderLastName : ''}")
+    String getAccountHolderLastName();
 
     Character getPersonType();
 
@@ -28,5 +30,6 @@ public interface PixAccountUserDetailsProjection {
     LocalDateTime getInclusionKeyDateTime();
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    LocalDateTime getInactiveKeyDateTime();
+    @Value("#{target.inactiveKeyDateTime != null ? target.inactiveKeyDateTime : ''}")
+    String getInactiveKeyDateTime();
 }
