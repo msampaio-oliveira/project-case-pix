@@ -97,6 +97,7 @@ public class PixAccountUserDetailsController extends AbstractRestController<Long
         return ok(pixAccountUserDetailsService.findProjectionById(id));
     }
 
+
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<PixAccountUserDetailsProjection>> findAll(
             @RequestParam(required = false) String keyValue,
