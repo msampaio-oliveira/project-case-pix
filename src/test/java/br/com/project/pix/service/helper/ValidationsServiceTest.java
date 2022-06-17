@@ -86,11 +86,10 @@ public class ValidationsServiceTest {
         ReflectionTestUtils.setField(validationsServiceMock, "limitMaxKeyValueNaturalPerson", 5);
         ReflectionTestUtils.setField(validationsServiceMock, "accountKeyAcceptedCurrent", "corrente");
         ReflectionTestUtils.setField(validationsServiceMock, "accountKeyAcceptedSavings", "poupança");
-
-
     }
 
     @Test
+    @DisplayName("Deve validar a criação da chave pix Celular")
     public void shouldValidateCreatePhonePixAccountUserDetails() {
 
         //when
@@ -103,6 +102,7 @@ public class ValidationsServiceTest {
     }
 
     @Test
+    @DisplayName("Deve validar o sobre nome do correntista na criação da chave pix")
     public void shouldValidateCreateEmptyHolderLastNamePixAccountUserDetails() {
 
         //when
@@ -115,6 +115,7 @@ public class ValidationsServiceTest {
     }
 
     @Test
+    @DisplayName("Deve validar se a chave informada já não existe no banco de dados")
     public void shouldKeyValueAlreadyExistsException() {
 
         //when
@@ -125,6 +126,7 @@ public class ValidationsServiceTest {
     }
 
     @Test
+    @DisplayName("Deve validar a criação da chave pix Email")
     public void shouldValidateCreateEmailPixAccountUserDetails() {
 
         //when
@@ -137,6 +139,7 @@ public class ValidationsServiceTest {
     }
 
     @Test
+    @DisplayName("Deve validar a criação da chave pix CPF")
     public void shouldValidateCreateCpfPixAccountUserDetails() {
 
         //when
@@ -149,6 +152,7 @@ public class ValidationsServiceTest {
     }
 
     @Test
+    @DisplayName("Deve validar a criação da chave pix CNPJ")
     public void shouldValidateCreateCnpjPixAccountUserDetails() {
 
         //when
@@ -161,6 +165,7 @@ public class ValidationsServiceTest {
     }
 
     @Test
+    @DisplayName("Deve validar a criação da chave pix aleatória")
     public void shouldValidateCreateAleatoryPixAccountUserDetails() {
 
         //when
@@ -169,10 +174,10 @@ public class ValidationsServiceTest {
         validationsServiceMock.validateCreatePixAccountUserDetails(pixAccountUserDetails, pixAccountUserDetailsRepository);
 
         verify(pixAccountUserDetailsRepository, times(1)).findByNumberKeyPix(any(), any());
-
     }
 
     @Test
+    @DisplayName("Deve validar a chave celular na atualização")
     public void shouldValidateUpdatePhonePixAccountUserDetails() {
 
         //when
@@ -180,11 +185,12 @@ public class ValidationsServiceTest {
 
         validationsServiceMock.validateUpdatePixAccountUserDetails(pixAccountUserDetails, pixAccountUserDetailsRepository);
 
-        verify(pixAccountUserDetailsRepository, times(0)).findByNumberKeyPix(any(), any());
+        verify(pixAccountUserDetailsRepository, times(0)).save(any());
 
     }
 
     @Test
+    @DisplayName("Deve validar a chave Email na atualização")
     public void shouldValidateUpdateEmailPixAccountUserDetails() {
 
         //when
@@ -192,11 +198,11 @@ public class ValidationsServiceTest {
 
         validationsServiceMock.validateUpdatePixAccountUserDetails(pixAccountUserDetails, pixAccountUserDetailsRepository);
 
-        verify(pixAccountUserDetailsRepository, times(0)).findByNumberKeyPix(any(), any());
-
+        verify(pixAccountUserDetailsRepository, times(0)).save(any());
     }
 
     @Test
+    @DisplayName("Deve validar a chave CPF na atualização")
     public void shouldValidateUpdateCpfPixAccountUserDetails() {
 
         //when
@@ -204,11 +210,12 @@ public class ValidationsServiceTest {
 
         validationsServiceMock.validateUpdatePixAccountUserDetails(pixAccountUserDetails, pixAccountUserDetailsRepository);
 
-        verify(pixAccountUserDetailsRepository, times(0)).findByNumberKeyPix(any(), any());
+        verify(pixAccountUserDetailsRepository, times(0)).save(any());
 
     }
 
     @Test
+    @DisplayName("Deve validar a chave CNPJ na atualização")
     public void shouldValidateUpdateCnpjPixAccountUserDetails() {
 
         //when
@@ -216,11 +223,12 @@ public class ValidationsServiceTest {
 
         validationsServiceMock.validateUpdatePixAccountUserDetails(pixAccountUserDetails, pixAccountUserDetailsRepository);
 
-        verify(pixAccountUserDetailsRepository, times(0)).findByNumberKeyPix(any(), any());
+        verify(pixAccountUserDetailsRepository, times(0)).save(any());
 
     }
 
     @Test
+    @DisplayName("Deve validar a chave aleatória na atualização")
     public void shouldValidateUpdateAleatoryPixAccountUserDetails() {
 
         //when
@@ -228,7 +236,7 @@ public class ValidationsServiceTest {
 
         validationsServiceMock.validateUpdatePixAccountUserDetails(pixAccountUserDetails, pixAccountUserDetailsRepository);
 
-        verify(pixAccountUserDetailsRepository, times(0)).findByNumberKeyPix(any(), any());
+        verify(pixAccountUserDetailsRepository, times(0)).save(any());
 
     }
 
@@ -387,7 +395,7 @@ public class ValidationsServiceTest {
     }
 
     @Test
-    @DisplayName("Deve retornar uma exception InvalidKeyAleatoryException por passar uma chave email inválida")
+    @DisplayName("Deve retornar uma exception InvalidEmailException por passar uma chave email inválida")
     public void shouldReturnInvalidEmailException() {
 
         //when

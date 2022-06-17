@@ -1,0 +1,1002 @@
+{
+	"info": {
+		"_postman_id": "ab7074be-dc14-4699-9357-33020e0b1e24",
+		"name": "Project Case Pix",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16068519"
+	},
+	"item": [
+		{
+			"name": "Add key",
+			"item": [
+				{
+					"name": "Validations",
+					"item": [
+						{
+							"name": "Validar chave pix - Agência com mais de 4 dígitos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"keyType\": \"cpf\",\n    \"keyValue\": \"23339140090\", \n    \"accountType\": \"poupança\", \n    \"agencyNumber\": 39496,\n    \"accountNumber\": 16134465,\n    \"accountHolderName\": \"Marcela\", \n    \"accountHolderLastName\": \"\",\n    \"personType\": \"F\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"project-case-pix",
+										"pix-account-details"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validar chave pix - Agência só pode conter números",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"keyType\": \"cpf\",\n    \"keyValue\": \"23339140090\", \n    \"accountType\": \"poupança\", \n    \"agencyNumber\": \"345m\",\n    \"accountNumber\": 16134465,\n    \"accountHolderName\": \"Marcela\", \n    \"accountHolderLastName\": \"\",\n    \"personType\": \"F\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"project-case-pix",
+										"pix-account-details"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validar chave pix - Conta com mais de 8 dígitos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"keyType\": \"cpf\",\n    \"keyValue\": \"23339140090\", \n    \"accountType\": \"poupança\", \n    \"agencyNumber\": 3949,\n    \"accountNumber\": 161344659,\n    \"accountHolderName\": \"Marcela\", \n    \"accountHolderLastName\": \"\",\n    \"personType\": \"F\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"project-case-pix",
+										"pix-account-details"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validar chave pix - Conta só pode conter números",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"keyType\": \"cpf\",\n    \"keyValue\": \"23339140090\", \n    \"accountType\": \"poupança\", \n    \"agencyNumber\": 3949,\n    \"accountNumber\": \"16F34459\",\n    \"accountHolderName\": \"Marcela\", \n    \"accountHolderLastName\": \"\",\n    \"personType\": \"F\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"project-case-pix",
+										"pix-account-details"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validar chave pix - Tipo conta diferente de poupança ou corrente",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"keyType\": \"cpf\",\n    \"keyValue\": \"23339140090\", \n    \"accountType\": \"conjunta\", \n    \"agencyNumber\": 3949,\n    \"accountNumber\": 1613449,\n    \"accountHolderName\": \"Marcela\", \n    \"accountHolderLastName\": \"\",\n    \"personType\": \"F\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"project-case-pix",
+										"pix-account-details"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validar chave pix - Tipo pessoa diferente de F ou J",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"keyType\": \"cpf\",\n    \"keyValue\": \"72756667072\", \n    \"accountType\": \"poupança\", \n    \"agencyNumber\": 3949,\n    \"accountNumber\": 16134465,\n    \"accountHolderName\": \"Thauã\", \n    \"accountHolderLastName\": \"Mengue\",\n    \"personType\": \"K\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"project-case-pix",
+										"pix-account-details"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validar chave pix - Excesso de chaves pix pessoa Física",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"keyType\": \"celular\",\n    \"keyValue\": \"+55956936548\", \n    \"accountType\": \"corrente\", \n    \"agencyNumber\": 3118,\n    \"accountNumber\": 12896859,\n    \"accountHolderName\": \"Cecilia\", \n    \"accountHolderLastLame\": \"Cecconi\",\n    \"personType\": \"F\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"project-case-pix",
+										"pix-account-details"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validar chave pix - Excesso de chaves pix pessoa Jurídica",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"keyType\": \"cnpj\",\n    \"keyValue\": \"67346957000165\", \n    \"accountType\": \"corrente\", \n    \"agencyNumber\": 5206,\n    \"accountNumber\": 374711,\n    \"accountHolderName\": \"Fernanda\", \n    \"accountHolderLastName\": \"Santana Lisboa\",\n    \"personType\": \"J\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"project-case-pix",
+										"pix-account-details"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Adicionar chave pix - Chave pix desconhecida",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"keyType\": \"cic\",\n    \"keyValue\": \"70542765968\", \n    \"accountType\": \"corrente\", \n    \"agencyNumber\": 3118,\n    \"accountNumber\": 12896859,\n    \"accountHolderName\": \"Edson\", \n    \"accountHolderLastLame\": \"Oliveira\",\n    \"personType\": \"F\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"project-case-pix",
+										"pix-account-details"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Adicionar chave pix - Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keyType\": \"email\",\n    \"keyValue\": \"julhofmsampaio@gmail.com\", \n    \"accountType\": \"poupança\", \n    \"agencyNumber\": 5596,\n    \"accountNumber\": 580953,\n    \"accountHolderName\": \"Matheus\", \n    \"accountHolderLastName\": \"Sampaio\",\n    \"personType\": \"F\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar chave pix - Email Chave pix já cadastrada",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keyType\": \"email\",\n    \"keyValue\": \"julhofmsamaiogmai.com.br\", \n    \"accountType\": \"poupança\", \n    \"agencyNumber\": \"223\",\n    \"accountNumber\": 228300,\n    \"accountHolderName\": \"Matheus\", \n    \"accountHolderLastName\": \"Sampaio\",\n    \"personType\": \"F\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar chave pix - Celular",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keyType\": \"celular\",\n    \"keyValue\": \"+55119810508\", \n    \"accountType\": \"corrente\", \n    \"agencyNumber\": 1560,\n    \"accountNumber\": 9989889,\n    \"accountHolderName\": \"Frederico\", \n    \"accountHolderLastName\": \"Bateli Teufel\",\n    \"personType\": \"F\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}:8888/project-case-pix/pix-account-details",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"port": "8888",
+							"path": [
+								"project-case-pix",
+								"pix-account-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar chave pix - Celular Inválido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keyType\": \"celular\",\n    \"keyValue\": \"119810508\", \n    \"accountType\": \"corrente\", \n    \"agencyNumber\": 1560,\n    \"accountNumber\": 9989889,\n    \"accountHolderName\": \"Frederico\", \n    \"accountHolderLastName\": \"Bateli Teufel\",\n    \"personType\": \"F\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar chave pix - CPF",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keyType\": \"cpf\",\n    \"keyValue\": \"13785692021\", \n    \"accountType\": \"poupança\", \n    \"agencyNumber\": 3949,\n    \"accountNumber\": 16134465,\n    \"accountHolderName\": \"Thauã\", \n    \"accountHolderLastName\": \"Mengue\",\n    \"personType\": \"F\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar chave pix - CPF Inválido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keyType\": \"cpf\",\n    \"keyValue\": \"44523626355\", \n    \"accountType\": \"poupança\", \n    \"agencyNumber\": 3949,\n    \"accountNumber\": 16134465,\n    \"accountHolderName\": \"Thauã \", \n    \"accountHolderLastName\": \"Mengue\",\n    \"personType\": \"F\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar chave pix - CPF outro usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keyType\": \"cpf\",\n    \"keyValue\": \"89683007040\", \n    \"accountType\": \"corrente\", \n    \"agencyNumber\": 3949,\n    \"accountNumber\": 16134465,\n    \"accountHolderName\": \"Ligia\", \n    \"accountHolderLastName\": \"Brusamolin de Rezende\",\n    \"personType\": \"F\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar chave pix - CPNJ",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keyType\": \"cnpj\",\n    \"keyValue\": \"35476395000188\", \n    \"accountType\": \"corrente\", \n    \"agencyNumber\": 8741,\n    \"accountNumber\": 835279,\n    \"accountHolderName\": \"Taciano\", \n    \"accountHolderLastName\": \"Máximo\",\n    \"personType\": \"J\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar chave pix - CNPJ outro usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keyType\": \"cnpj\",\n    \"keyValue\": \"67346957000165\", \n    \"accountType\": \"corrente\", \n    \"agencyNumber\": 5206,\n    \"accountNumber\": 374711,\n    \"accountHolderName\": \"Fernanda\", \n    \"accountHolderLastName\": \"Santana Lisboa\",\n    \"personType\": \"J\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar chave pix - CPNJ Inválido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keyType\": \"cnpj\",\n    \"keyValue\": \"35476342000188\", \n    \"accountType\": \"corrente\", \n    \"agencyNumber\": 8741,\n    \"accountNumber\": 835279,\n    \"accountHolderName\": \"Taciano\", \n    \"accountHolderLastName\": \"Máximo\",\n    \"personType\": \"J\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar chave pix - Aleatória",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keyType\": \"aleatorio\",\n    \"keyValue\": \"35f21-74bc75-47c3d7-5636-9985-2622\", \n    \"accountType\": \"corrente\", \n    \"agencyNumber\": 3118,\n    \"accountNumber\": 12896859,\n    \"accountHolderName\": \"Cecilia\", \n    \"accountHolderLastLame\": \"Cecconi\",\n    \"personType\": \"F\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar chave pix - Aleatória inválida",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keyType\": \"aleatorio\",\n    \"keyValue\": \"385ff2d1-7491bc75-470c30d7-53504ab1636-997235-236622\", \n    \"accountType\": \"corrente\", \n    \"agencyNumber\": 3118,\n    \"accountNumber\": 12896859,\n    \"accountHolderName\": \"Cecilia\", \n    \"accountHolderLastLame\": \"Cecconi\",\n    \"personType\": \"F\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete key",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details/9223372035695221544",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details",
+								"9223372035695221544"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete - Chave já deletada",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details/457049170",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details",
+								"457049170"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update Key",
+			"item": [
+				{
+					"name": "validations",
+					"item": [
+						{
+							"name": "Validar chave pix - Agência com mais de 4 dígitos",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountType\": \"poupança\", \n    \"agencyNumber\": 55966,\n    \"accountNumber\": 580953,\n    \"accountHolderName\": \"Matheus\", \n    \"accountHolderLastName\": \"Sampaio de Oliveira\",\n    \"personType\": \"J\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/project-case-pix/pix-account-details/9955904",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"project-case-pix",
+										"pix-account-details",
+										"9955904"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validar chave pix - Agência só pode conter dígitos",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountType\": \"poupança\", \n    \"agencyNumber\": \"559o\",\n    \"accountNumber\": 580953,\n    \"accountHolderName\": \"Matheus\", \n    \"accountHolderLastName\": \"Sampaio de Oliveira\",\n    \"personType\": \"J\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/project-case-pix/pix-account-details/9955904",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"project-case-pix",
+										"pix-account-details",
+										"9955904"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validar chave pix - Conta com mais de 8 dígitos",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountType\": \"poupança\", \n    \"agencyNumber\": 5596,\n    \"accountNumber\": 679580953,\n    \"accountHolderName\": \"Matheus\", \n    \"accountHolderLastName\": \"Sampaio de Oliveira\",\n    \"personType\": \"J\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/project-case-pix/pix-account-details/9955904",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"project-case-pix",
+										"pix-account-details",
+										"9955904"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validar chave pix - Conta só pode conter dígitos",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountType\": \"poupança\", \n    \"agencyNumber\": 5596,\n    \"accountNumber\": \"679580o\",\n    \"accountHolderName\": \"Matheus\", \n    \"accountHolderLastName\": \"Sampaio de Oliveira\",\n    \"personType\": \"J\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/project-case-pix/pix-account-details/9955904",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"project-case-pix",
+										"pix-account-details",
+										"9955904"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validar chave pix - Tipo conta diferente de poupança ou corrente",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountType\": \"conjunta\", \n    \"agencyNumber\": 5596,\n    \"accountNumber\": 679580,\n    \"accountHolderName\": \"Matheus\", \n    \"accountHolderLastName\": \"Sampaio de Oliveira\",\n    \"personType\": \"J\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/project-case-pix/pix-account-details/9955904",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"project-case-pix",
+										"pix-account-details",
+										"9955904"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validar chave pix - Tipo pessoa diferente de F ou J",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountType\": \"corrente\", \n    \"agencyNumber\": 5596,\n    \"accountNumber\": 679580,\n    \"accountHolderName\": \"Matheus\", \n    \"accountHolderLastName\": \"Sampaio de Oliveira\",\n    \"personType\": \"M\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/project-case-pix/pix-account-details/9955904",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"project-case-pix",
+										"pix-account-details",
+										"9955904"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Atualizar chave pix",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountType\": \"poupança\", \n    \"agencyNumber\": 3949,\n    \"accountNumber\": 16134465,\n    \"accountHolderName\": \"Frederico\", \n    \"accountHolderLastName\": \"Bateli Teufel\",\n    \"personType\": \"F\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details/9223372035618746033",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details",
+								"9223372035618746033"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar - Chave inexistente ou inativa",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountType\": \"corrente\", \n    \"agencyNumber\": \"223\",\n    \"accountNumber\": 228300,\n    \"accountHolderName\": \"Matheus\", \n    \"accountHolderLastLame\": \"Sampaio\",\n    \"personType\": \"F\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details/457049170",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details",
+								"457049170"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Find",
+			"item": [
+				{
+					"name": "Buscar com parametros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details?accountNumber=12896859&agencyNumber=3118&accountHolderName=Cecilia&dateActiveKey=2022-06-15&keyValue=celular",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details"
+							],
+							"query": [
+								{
+									"key": "accountNumber",
+									"value": "12896859"
+								},
+								{
+									"key": "agencyNumber",
+									"value": "3118"
+								},
+								{
+									"key": "accountHolderName",
+									"value": "Cecilia"
+								},
+								{
+									"key": "idPixAccountUserDetail",
+									"value": "94500783",
+									"disabled": true
+								},
+								{
+									"key": "dateActiveKey",
+									"value": "2022-06-15"
+								},
+								{
+									"key": "dateInactiveKey",
+									"value": "2022-06-12",
+									"disabled": true
+								},
+								{
+									"key": "keyValue",
+									"value": "celular"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar com parametros - Não deve aceitar data ativação e data inativação",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details?keyValue=email&dateActiveKey=2022-06-16&dateInactiveKey=2022-06-15",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details"
+							],
+							"query": [
+								{
+									"key": "keyValue",
+									"value": "email"
+								},
+								{
+									"key": "dateActiveKey",
+									"value": "2022-06-16"
+								},
+								{
+									"key": "dateInactiveKey",
+									"value": "2022-06-15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar com parametros - Quando passado ID, não deve aceitar nenhum outro filtro",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_BASE}}/project-case-pix/pix-account-details?keyValue=email&accountNumber=580953&idPixAccountUserDetail=9223372035618746033",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"project-case-pix",
+								"pix-account-details"
+							],
+							"query": [
+								{
+									"key": "keyValue",
+									"value": "email"
+								},
+								{
+									"key": "accountNumber",
+									"value": "580953"
+								},
+								{
+									"key": "idPixAccountUserDetail",
+									"value": "9223372035618746033"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "213997201656397874"
+		}
+	]
+}
