@@ -120,6 +120,7 @@ public class PixAccountUserDetailsServiceTest {
     }
 
     @Test
+    @DisplayName("Deve retornar um objeto do tipo PixAccountUserDetailsProjection buscado pelo ID")
     public void shouldFindProjectionByIdPixAccountUserDetails() {
 
         // when
@@ -132,7 +133,7 @@ public class PixAccountUserDetailsServiceTest {
     }
 
     @Test
-    @DisplayName("Deve retornar uma exception KeyInactiveException ao procurar um id no banco de dados inexistente por projection id")
+    @DisplayName("Deve retornar uma exception DataNotFoundException ao procurar um id no banco de dados inexistente por projection id")
     public void shouldDataNotFoundExceptionInFindProjectionByIdPixAccountUserDetails() {
 
         when(pixAccountUserDetailsRepositoryMock.findProjectionById(any())).thenReturn(Optional.empty());
@@ -176,7 +177,7 @@ public class PixAccountUserDetailsServiceTest {
     }
 
     @Test
-    @DisplayName("Deve retornar uma exception KeyInactiveException ao procurar um id no banco de dados inexistente por id")
+    @DisplayName("Deve retornar uma exception DataNotFoundException ao procurar um id no banco de dados inexistente por id")
     public void shouldDataNotFoundExceptionInFindByIdPixAccountUserDetails() {
 
         //when

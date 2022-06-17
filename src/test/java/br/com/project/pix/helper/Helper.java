@@ -22,7 +22,6 @@ public class Helper {
     public static final String KEY_VALUE_EMAIL_INVALID = "julhofmsampaiogmail.com";
     public static final String KEY_VALUE_CELULAR = "+5511976548767";
     public static final String KEY_VALUE_CPF = "31205573070";
-
     public static final String KEY_VALUE_CPF_INVALID = "73543747633";
     public static final String KEY_VALUE_CNPJ = "23224431000137";
     public static final String KEY_VALUE_CNPJ_INVALID = "23224431000";
@@ -35,11 +34,8 @@ public class Helper {
     public static final String ACCOUNT_HOLDER_NAME = "Matheus";
     public static final String AGENCY_ACCOUNT = "0228";
     public static final String AGENCY_ACCOUNT_INVALID = "0228543";
-
     public static final String ACCOUNT_NUMBER = "938743";
-
     public static final String ACCOUNT_NUMBER_INVALID = "876548938743";
-
     public static final String HOLDER_NAME = "Anastácio";
     public static final String HOLDER_NAME_INVALID = "Anastácio Aparecido de Jesus Silva Neto";
     public static final String HOLDER_LAST_NAME = "Bateli Teufel";
@@ -139,7 +135,6 @@ public class Helper {
     public static PixAccountUserDetails inactivePixEmailAccountUserDetails() {
         return createPixAccountUserDetails(KEY_TYPE_EMAIL, KEY_VALUE_EMAIL, ACCOUNT_TYPE_CURRENT, PERSON_LEGAL_TYPE, true, AGENCY_ACCOUNT, ACCOUNT_NUMBER, HOLDER_NAME, HOLDER_LAST_NAME);
     }
-
 
     public static PixLimitMaxKeyValueProjection createPixLimitMaxKeyLegalPersonValueDTO(ProjectionFactory projectionFactory) {
         PixLimitMaxKeyValueDTO pixAccountUserDetails = createPixLimitMaxKeyValueDTO(33, "J");
